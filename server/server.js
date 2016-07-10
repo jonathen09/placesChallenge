@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var rp = require('request-promise');
+var GOOGLE_PLACES_API_KEY = require(__dirname + '/../../googleplaces.js');
 
 //config
 var port = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.get('/places', function(req, res) {
       + '&location=' + location
       + '&radius=' + 10000
       + '&keyword=' + keyword
+      + '&key=' + GOOGLE_PLACES_API_KEY
     )
     .then(function(data) {
       res.json(JSON.parse(data.body));
