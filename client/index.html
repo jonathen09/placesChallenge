@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+  <head>
+    <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>Google Places Search </title>
+  </head>
+  <body>
+    <h2> Google Places Search </h2>
+    <p> by Jonathen </p>
+    <p>  </p>
+    <div ng-controller='AppController'>
+      <form name = "searchForm" ng-submit="googlePlacesSearch()">
+      <md-input-container class="md-block">
+         <label class="search-header">Search Google places here....</label>
+         <textarea ng-model="queryString" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+         <md-button class="md-raised md-primary" type="submit">Submit Query</md-button>
+      </md-input-container>
+      </form>
+      <img src="/assets/loading.gif" class="loading-gif" ng-show="searching">
+      <md-list>
+      <md-header class="places-header"> Found Places : </md-header>
+      <md-divider></md-divider>
+        <md-list-item class="noright" ng-repeat='place in places' ng-click="null">
+          <span class="md-headline"> {{place.name}}</span>
+          <p> - {{place.vicinity}}</p>
+          <md-button class='md-icon-button' aria-label='Redirect' ng-click=openMap(place)>
+            <md-icon md-svg-icon="assets/ic_map_black_24px.svg"></md-icon>
+          </md-button>
+        </md-list-item>
+      </md-list>
+
+    </div>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-aria/angular-aria.js"></script>
+  <script src="lib/angular-messages/angular-messages.js"></script>
+  <script src="lib/angular-material/angular-material.js"></script>
+
+  <script src="app/services.js"></script>
+  <script src="app/app.js"></script>
+  </body>
+</html>
